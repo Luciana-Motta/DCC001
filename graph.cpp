@@ -76,7 +76,7 @@ public:
 	int** getMatrix(){ 
 		int** matrix = new int*[n];
 		for(int i = 0; i < n; i++){ //O(n)
-			matrix[i] = new int[n];
+			matrix[i] = new int[n];    
 		}
 		for(int i = 0; i < n; i++){ //O(2n*2m)
 			node* local = nodesList[i];
@@ -88,10 +88,10 @@ public:
 		return matrix;
 	}
   
-  //função que retorna array binario O(2n^2 + 4) = O(n^2)
+  //função que retorna array binario O(2n + n*2m + 2 + 2n^2 + 4) = O(n^2)
 	int* getBinaryArray(){
 		int* binArray = new int[((int)n*(n-1)/2)];
-		int** matrix = getMatrix(); 
+		int** matrix = getMatrix(); //O(2n + n*2m + 2)
 		int pos = 0;
 		for(int i = 0; i < n; i++){ //O(n*2n)
 			for(int j = i+1; j < n; j++){ //O(2n)
@@ -101,6 +101,7 @@ public:
 		}
 		return binArray;
 	}
+	
   //função que retorna array compactado O(4n^2 - 2n + 8) = O(n^2)
 	int* getCompactedArray(){
 		int* binArray = getBinaryArray(); //O(2n^2 + 4)
